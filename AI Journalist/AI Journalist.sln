@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI Journalist", "AI Journalist\AI Journalist.csproj", "{CF8DA4EE-A9ED-49C7-89A0-370B1B3F10AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF8DA4EE-A9ED-49C7-89A0-370B1B3F10AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8DA4EE-A9ED-49C7-89A0-370B1B3F10AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8DA4EE-A9ED-49C7-89A0-370B1B3F10AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8DA4EE-A9ED-49C7-89A0-370B1B3F10AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E32AF3E-61A8-4C11-A7B2-BB6FEE9B019E}
+	EndGlobalSection
+EndGlobal
