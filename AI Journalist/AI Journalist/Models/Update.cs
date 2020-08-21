@@ -4,13 +4,13 @@ using System.Text;
 
 namespace AI_Journalist.Models
 {
-    struct Update
+    class Update
     {
         public string SourceUrl;
-        public DateTime When;
+        public int Timestamp;
         public Account Author;
-        public Account[] OthersTagged;
-        public Media[] Medias;
         public string Caption;
+        public List<Account> Tagged = new List<Account>();
+        public List<Media> Medias = new List<Media>();
     }
 }
