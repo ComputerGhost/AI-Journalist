@@ -11,30 +11,34 @@ namespace AI_Journalist
     class Program
     {
         const string SETTINGS_FILE = "settings.json";
+        public static Settings Settings = Settings.CreateFromFile(SETTINGS_FILE);
 
-        static async void Main(string[] args)
+        static void Main(string[] args)
         {
-            var settings = Settings.CreateFromFile(SETTINGS_FILE);
+            foreach (var account in Settings.FollowedAccounts)
+                ProcessAccount(account);
+        }
 
-            // Load in any updates
-            var updates = new List<Update>();
-            foreach (var account in settings.FollowedAccounts) {
-                foreach (var update in await new Instagram().GetUpdates(account)) {
-                    if (update.When <= account.LastUpdate)
-                        break;
-                    updates.Add(update);
-                }
+        static void ProcessAccount(Settings.AccountNode account)
+        {
+            Console.WriteLine("Processing account: {0}", account.Username);
+
+            var updates = new Instagram().GetUpdates(account.Username, account.LastUpdate);
+            foreach (var update in updates)
+                ProcessUpdate(update);
+
+            if (updates.Count > 0) {
+                account.LastUpdate = updates[0].Timestamp;
+                Settings.Save(SETTINGS_FILE);
             }
+        }
 
-            // Call out to modules
-            //
-
-            // Send article out
-            //
-
-            Console.WriteLine(JsonConvert.SerializeObject(updates));
-
-            settings.Save(SETTINGS_FILE);
+        static void ProcessUpdate(Update update)
+        {
+            Console.WriteLine(" Processing update: {0}", update.Timestamp);
+            foreach (var module in Settings.Modules) {
+                //
+            }
         }
     }
 }

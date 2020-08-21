@@ -11,6 +11,10 @@ namespace AI_Journalist
     {
         static HttpClient Client = new HttpClient();
 
+        public string GetText(string url)
+        {
+            return GetTextAsync(url).Result;
+        }
 
         public async Task<string> GetTextAsync(string url)
         {

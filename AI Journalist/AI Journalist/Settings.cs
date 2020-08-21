@@ -8,19 +8,25 @@ namespace AI_Journalist
 {
     class Settings
     {
+
+        // The compiler warns that our properties are never assigned,
+        // but they are assigned via deserialization, so we disable the warning.
+#pragma warning disable 0649
+
         public struct AccountNode
         {
             public string Username;
-            public DateTime LastUpdate;
+            public int LastUpdate;
         }
         public AccountNode[] FollowedAccounts;
 
         public struct PeopleNode
         {
             public string Username;
-            public string PersonName;
-            public char PersonEmoticon;
             public string AccountDescription;
+            public string Name;
+            public string Emoticon;
+            public string Pronoun;
         }
         public PeopleNode[] People;
 
@@ -32,6 +38,17 @@ namespace AI_Journalist
         }
         public ModuleNode[] Modules;
 
+        public struct ArticleTemplateBlock
+        {
+            public string Type;
+            public string Value;
+        }
+        public ArticleTemplateBlock ArticleTemplate;
+
+        // Leaving the part where the compiler is wrong,
+        // so we restore the warning checking.
+#pragma warning restore 0649
+
 
         public static Settings CreateFromFile(string filename)
         {
@@ -41,7 +58,8 @@ namespace AI_Journalist
 
         public void Save(string filename)
         {
-            var contents = JsonConvert.SerializeObject(this);
+            var settings = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            var contents = JsonConvert.SerializeObject(this, Formatting.Indented, settings);
             File.WriteAllText(filename, contents);
         }
 
