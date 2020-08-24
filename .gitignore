@@ -1,6 +1,6 @@
 ## Our own ignores
 
-settings.json
+_run/settings.json
 
 
 ## Ignore Visual Studio temporary files, build results, and

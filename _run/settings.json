@@ -1,0 +1,138 @@
+{
+  "FollowedAccounts": [
+    {
+      "Username": "soul.g_heo",
+      "LastUpdate": 1597671613
+    },
+    {
+      "Username": "x_xellybabyx",
+      "LastUpdate": 1597629691
+    },
+    {
+      "Username": "ahnhani_92",
+      "LastUpdate": 1597832351
+    },
+    {
+      "Username": "hyeliniseo",
+      "LastUpdate": 1597903251
+    },
+    {
+      "Username": "jeonghwa_0508",
+      "LastUpdate": 1596437907
+    },
+    {
+      "Username": "chocomonge_v",
+      "LastUpdate": 1596198135
+    },
+    {
+      "Username": "dot__film_",
+      "LastUpdate": 1589722436
+    },
+    {
+      "Username": "yamyamlini",
+      "LastUpdate": 1591696890
+    },
+    {
+      "Username": "mocha_life_petstagram",
+      "LastUpdate": 1597546998
+    }
+  ],
+  "Contexts": {
+    "People": [
+      {
+        "Username": "soul.g_heo",
+        "AccountDescription": "Instagram",
+        "Name": "Solji",
+        "Emoticon": "🦋",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "x_xellybabyx",
+        "AccountDescription": "Instagram",
+        "Name": "LE",
+        "Emoticon": "🎮",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "ahnhani_92",
+        "AccountDescription": "Instagram",
+        "Name": "Hani",
+        "Emoticon": "🌹",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "hyeliniseo",
+        "AccountDescription": "Instagram",
+        "Name": "Hyelin",
+        "Emoticon": "🥖",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "jeonghwa_0508",
+        "AccountDescription": "Instagram",
+        "Name": "Jeonghwa",
+        "Emoticon": "🌻",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "chocomonge_v",
+        "AccountDescription": "Instagram",
+        "Name": "ChocoMonge",
+        "Emoticon": "🦋",
+        "Pronoun": "they"
+      },
+      {
+        "Username": "dot__film_",
+        "AccountDescription": "photography Instagram",
+        "Name": "Hani",
+        "Emoticon": "🌹",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "yamyamlini",
+        "AccountDescription": "food Instagram",
+        "Name": "Hyelin",
+        "Emoticon": "🥖",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "mocha_life_petstagram",
+        "AccountDescription": "Instagram",
+        "Name": "Mocha",
+        "Emoticon": "🌻",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "ath_terry",
+        "Name": "Taehwan"
+      },
+      {
+        "Username": "youzu.lee",
+        "Name": "Youzu"
+      },
+      {
+        "Username": "haenaann",
+        "Name": "Haena"
+      }
+    ],
+    "Translator": {
+      "ClientId": "HizCDfnTdGAHWx7xMr9g",
+      "ClientSecret": "003Owh294Z"
+    },
+    "Calendar": {
+      "ApplicationName": "InstagramAuthor",
+      "ApiKey": "AIzaSyCCRHijLh7lUlxzWJGsI9RYB6qbbxO7e_8",
+      "LinkedCalendars": [
+		{"Id":"0kmlo087b5qrevu8ktl5rm3n04@group.calendar.google.com","Timezone":"Korea Standard Time"},
+        {"Id":"ijnc9qtrne1lsjj5h4v0o9vdrg@group.calendar.google.com","Timezone":"Korea Standard Time"}
+      ],
+      "PastDays": 7,
+      "FutureDays": 30
+    },
+    "Vision": {
+      "Endpoint": "https://aijournalist.cognitiveservices.azure.com/",
+      "ApiKey": "e3fcfded5f5c42c8a321ffb1e0286682"
+    }
+  },
+  "ArticleTemplateFilename": "article.html"
+}
