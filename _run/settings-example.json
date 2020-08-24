@@ -1,0 +1,106 @@
+{
+  "FollowedAccounts": [
+    {
+      "Username": "soul.g_heo",
+      "LastUpdate": 1597671613
+    }
+  ],
+  "Contexts": {
+    "People": [
+      {
+        "Username": "soul.g_heo",
+        "AccountDescription": "Instagram",
+        "Name": "Solji",
+        "Emoticon": "🦋",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "x_xellybabyx",
+        "AccountDescription": "Instagram",
+        "Name": "LE",
+        "Emoticon": "🎮",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "ahnhani_92",
+        "AccountDescription": "Instagram",
+        "Name": "Hani",
+        "Emoticon": "🌹",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "hyeliniseo",
+        "AccountDescription": "Instagram",
+        "Name": "Hyelin",
+        "Emoticon": "🥖",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "jeonghwa_0508",
+        "AccountDescription": "Instagram",
+        "Name": "Jeonghwa",
+        "Emoticon": "🌻",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "chocomonge_v",
+        "AccountDescription": "Instagram",
+        "Name": "ChocoMonge",
+        "Emoticon": "🦋",
+        "Pronoun": "they"
+      },
+      {
+        "Username": "dot__film_",
+        "AccountDescription": "photography Instagram",
+        "Name": "Hani",
+        "Emoticon": "🌹",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "yamyamlini",
+        "AccountDescription": "food Instagram",
+        "Name": "Hyelin",
+        "Emoticon": "🥖",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "mocha_life_petstagram",
+        "AccountDescription": "Instagram",
+        "Name": "Mocha",
+        "Emoticon": "🌻",
+        "Pronoun": "she"
+      },
+      {
+        "Username": "ath_terry",
+        "Name": "Taehwan"
+      },
+      {
+        "Username": "youzu.lee",
+        "Name": "Youzu"
+      },
+      {
+        "Username": "haenaann",
+        "Name": "Haena"
+      }
+    ],
+    "Translator": {
+      "ClientId": "[your-client-id-here]",
+      "ClientSecret": "[your-client-secret-here]"
+    },
+    "Calendar": {
+      "ApplicationName": "[your-app-name-here]",
+      "ApiKey": "[your-app-key-here]",
+      "LinkedCalendars": [
+		{"Id":"[your-calendar-id-here@group.calendar.google.com]","Timezone":"Korea Standard Time"},
+        {"Id":"[another-calendar-id-here@group.calendar.google.com]","Timezone":"Korea Standard Time"}
+      ],
+      "PastDays": 7,
+      "FutureDays": 30
+    },
+    "Vision": {
+      "Endpoint": "https://[your-subdomain-for-endpoint-here].cognitiveservices.azure.com/",
+      "ApiKey": "[your-api-key-here]"
+    }
+  },
+  "ArticleTemplateFilename": "article.html"
+}
