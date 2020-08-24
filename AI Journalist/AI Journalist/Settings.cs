@@ -13,37 +13,58 @@ namespace AI_Journalist
         // but they are assigned via deserialization, so we disable the warning.
 #pragma warning disable 0649
 
-        public struct AccountNode
+        public class AccountNode
         {
             public string Username;
             public int LastUpdate;
         }
         public AccountNode[] FollowedAccounts;
 
-        public struct PeopleNode
+        public class ContextsNode
         {
-            public string Username;
-            public string AccountDescription;
-            public string Name;
-            public string Emoticon;
-            public string Pronoun;
-        }
-        public PeopleNode[] People;
+            public struct PeopleNode
+            {
+                public string Username;
+                public string AccountDescription;
+                public string Name;
+                public string Emoticon;
+                public string Pronoun;
+            }
+            public PeopleNode[] People;
 
-        public struct ModuleNode
-        {
-            public string TemplateName;
-            public string Parameters;
-            public string Path;
-        }
-        public ModuleNode[] Modules;
+            public class TranslatorNode
+            {
+                public string ClientId;
+                public string ClientSecret;
+            }
+            public TranslatorNode Translator;
 
-        public struct ArticleTemplateBlock
-        {
-            public string Type;
-            public string Value;
+            public class CalendarNode
+            {
+                public class LinkedNode
+                {
+                    public string Id;
+                    public string Timezone; // because pulling from Google requires app review
+                }
+                public string ApplicationName;
+                public string ApiKey;
+                public int PastDays;
+                public int FutureDays;
+                public LinkedNode[] LinkedCalendars;
+            }
+            public CalendarNode Calendar;
+
+            public class VisionNode
+            {
+                public string Endpoint;
+                public string ApiKey;
+            }
+            public VisionNode Vision;
         }
-        public ArticleTemplateBlock ArticleTemplate;
+        public ContextsNode Contexts;
+
+        // Btw, we use Fluid, which is similar to Liquid template language
+        public string ArticleTemplateFilename;
 
         // Leaving the part where the compiler is wrong,
         // so we restore the warning checking.

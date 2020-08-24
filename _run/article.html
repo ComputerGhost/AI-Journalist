@@ -1,0 +1,178 @@
+
+<!-- Just some quick styles for testing -->
+<style>
+	body { width: 700px; }
+	img { width: 300px; display: inline-block; }
+	.quote { border-left: 3px solid #eee; margin-left: 3em; padding: 1em; margin-bottom: 1em; }
+</style>
+<!-- -->
+
+<h1>
+	<!-- August 17th, Solji Instagram -->
+		<time datetime="{{ Context.When | date: '%F %k:%M:%SZ' }}">{{ Context.When | tokst | date: "%B %e" }}</time> 
+		{{ Context.Author.PersonName }} {{ Context.Author.Description }}
+	<!-- -->
+</h1>
+
+<p>
+	<!-- On August 17, Solji posted 2 pictures and 1 video on her Instagram. -->
+	
+		<!-- On August 17th, -->
+		On <time datetime="{{ Context.When | date: '%F %k:%M:%SZ' }}">{{ Context.When | tokst | date: "%B %e" }}</time>, 
+		
+		<!-- Solji posted -->
+		{{ Context.Author.PersonName }} posted
+		
+		<!-- 2 pictures and 1 video on her Instagram -->
+		{% assign image_count = Context.Source.Medias | where: "IsVideo", "false" | size %}
+		{% assign video_count = Context.Source.Medias | where: "IsVideo", "true" | size %}
+		{% if image_count > 0 %} {{ image_count }} images {% endif %}
+		{% if image_count > 0 and video_count > 0 %} and {% endif %}
+		{% if video_count > 0 %} {{ video_count }} videos {% endif %}
+		
+		<!-- on her Instagram. -->
+		on {{ Context.Author.Pronoun.DependentPossessive }} {{ Context.Author.Description }}.
+		
+	<!-- -->
+	
+	<!-- Tagged in the media are Taehwan, Hani, and @allways.  LE is tagged in the caption. -->
+	
+		<!-- Tagged in the media is Taehwan, Hani, and @allways. -->
+		{% assign tags = Context.TaggedInMedia %}
+		{% if tags | size == 1 %}
+			Tagged in the media is 
+			<a href="https://instagram.com/{{ tags[0].Username }}">{{ tags[0].PersonName }}</a>.
+		{% elsif tags | size == 2 %}
+			Tagged in the media are 
+			<a href="https://instagram.com/{{ tags[0].Username }}">{{ tags[0].PersonName }}</a>
+			and
+			<a href="https://instagram.com/{{ tags[1].Username }}">{{ tags[1].PersonName }}</a>.
+		{% elsif tags | size > 2 %}
+			Tagged in the media are 
+			{% assign i_end = tags | size -1 %}
+			{% for i in (0..i_end) %}
+				<a href="https://instagram.com/{{ tags[i].Username }}">{{ tags[i].PersonName }}</a>, 
+			{% endfor %}
+			and
+			<a href="https://instagram.com/{{ tags[tags | size - 1].Username }}">{{ tags[tags | size - 1].PersonName }}</a>.
+		{% endif %}
+		
+		<!-- LE is tagged in the caption. -->
+		{% assign tags = Context.TaggedInCaption %}
+		{% if tags | size == 1 %}
+			<a href="https://instagram.com/{{ tags[0].Username }}">{{ tags[0].PersonName }}</a>
+			is tagged in the caption.
+		{% elsif tags | size == 2 %}
+			<a href="https://instagram.com/{{ tags[0].Username }}">{{ tags[0].PersonName }}</a>
+			and
+			<a href="https://instagram.com/{{ tags[1].Username }}">{{ tags[1].PersonName }}</a>
+			are tagged in the caption.
+		{% elsif tags | size > 2 %}
+			{% assign i_end = tags | size - 2 %}
+			{% for i in (0..i_end) %}
+				<a href="https://instagram.com/{{ tags[i].Username }}">{{ tags[i].PersonName }}</a>, 
+			{% endfor %}
+			and
+			<a href="https://instagram.com/{{ tags[tags | size - 1].Username }}">{{ tags[tags | size - 1].PersonName }}</a>
+			are tagged in the caption.
+		{% endif %}
+	
+	<!-- -->
+	
+	<!-- Visit the post <here>. -->
+	
+		Visit the post <a href="{{ Context.Source.SourceUrl }}">here</a>.
+	
+	<!-- -->
+	
+</p>
+
+<p>
+	<!-- The pictures are of a dog, a closeup of a dog, and surfing.  The video is of surfing. -->
+	
+		{% assign pictures = Context.PictureDescriptions %}
+		{% assign videos = Context.VideoDescriptions %}
+	
+		<!-- The pictures are of a dog, a closeup of a dog, and surfing. -->
+		{% if pictures | size == 1 %}
+			The picture is of {{ pictures[0].Description }}.
+		{% elsif pictures | size == 2 %}
+			The pictures are of {{ pictures[0].Description }} and of {{ pictures[1].Description }}.
+		{% elsif pictures | size > 2 %}
+			The pictures are of 
+			{% assign i_end = pictures | size - 2 %}
+			{% for i in (0..i_end) %}
+				{{ pictures[i].Description }},
+			{% endfor %}
+			and
+			{{ pictures[i_end + 1].Description }}
+		{% endif %}
+	
+		<!-- The video is of surfing. -->
+		{% if videos | size == 1 %}
+			The video is of {{ videos[0].Description }}.
+		{% elsif videos | size == 2 %}
+			The videos are of {{ videos[0].Description }} and of {{ videos[1].Description }}.
+		{% elsif videos | size > 2 %}
+			The videos are of 
+			{% assign i_end = videos | size - 2 %}
+			{% for i in (0..i_end) %}
+				{{ videos[i].Description }},
+			{% endfor %}
+			and
+			{{ videos[i_end + 1].Description }}
+		{% endif %}
+	
+	<!-- -->
+</p>
+
+<!-- Image block -->
+	<div>
+		{% for media in Context.Source.Medias %}
+			<img src="{{ media.DisplayUrl }}" class="{% if media.IsVideo %}video{% endif %}">
+		{% endfor %}
+	</div>
+<!-- -->
+
+<!-- Captions -->
+
+	<p>The caption is:</p>
+	
+	<div class="quote">
+		{{ Context.Source.Caption }}
+	</div>
+	
+	{% if Context.IsCaptionKorean %}
+		<div class="quote">
+			(translated) {{ Context.TranslatedCaption }}
+		</div>
+	{% endif %}
+	
+<!-- -->
+
+<p>
+	<!-- Be sure to show your support to Solji and the others -->
+		Be sure to show your support to {{ Context.Author.PersonName }} and the others.
+	<!-- -->
+	
+	<!-- Recently, there was B.L.E.S.S.E.D. on August 19th. -->
+		{% if Context.PastEvents | size > 0 %}
+			Recently, there was
+			{{ Context.PastEvents[0].Title }}
+			on {{ Context.PastEvents[0].StartTime | tokst | date: "%B %e" }}.
+		{% endif %}
+	<!-- -->
+	
+	<!--  Also look forward to Monge's birthday (approximate) on October 22nd. -->
+		{% if Context.NextEvents | size > 0 %}
+			Also look forward to 
+			{{ Context.NextEvents[0].Title }}
+			on {{ Context.NextEvents[0].StartTime | tokst | date: "%B %e" }}.
+		{% endif %}
+	<!-- -->
+	
+	<!-- See our schedule for all official activity. -->
+	See <a href="https://leggonews.com/schedule/">our schedule</a> for all official activity.
+	<!-- -->
+</p>
+
