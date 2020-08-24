@@ -3,38 +3,6 @@
     {
       "Username": "soul.g_heo",
       "LastUpdate": 1597671613
-    },
-    {
-      "Username": "x_xellybabyx",
-      "LastUpdate": 1597629691
-    },
-    {
-      "Username": "ahnhani_92",
-      "LastUpdate": 1597832351
-    },
-    {
-      "Username": "hyeliniseo",
-      "LastUpdate": 1597903251
-    },
-    {
-      "Username": "jeonghwa_0508",
-      "LastUpdate": 1596437907
-    },
-    {
-      "Username": "chocomonge_v",
-      "LastUpdate": 1596198135
-    },
-    {
-      "Username": "dot__film_",
-      "LastUpdate": 1589722436
-    },
-    {
-      "Username": "yamyamlini",
-      "LastUpdate": 1591696890
-    },
-    {
-      "Username": "mocha_life_petstagram",
-      "LastUpdate": 1597546998
     }
   ],
   "Contexts": {
@@ -116,22 +84,22 @@
       }
     ],
     "Translator": {
-      "ClientId": "HizCDfnTdGAHWx7xMr9g",
-      "ClientSecret": "003Owh294Z"
+      "ClientId": "[your-client-id-here]",
+      "ClientSecret": "[your-client-secret-here]"
     },
     "Calendar": {
-      "ApplicationName": "InstagramAuthor",
-      "ApiKey": "AIzaSyCCRHijLh7lUlxzWJGsI9RYB6qbbxO7e_8",
+      "ApplicationName": "[your-app-name-here]",
+      "ApiKey": "[your-app-key-here]",
       "LinkedCalendars": [
-		{"Id":"0kmlo087b5qrevu8ktl5rm3n04@group.calendar.google.com","Timezone":"Korea Standard Time"},
-        {"Id":"ijnc9qtrne1lsjj5h4v0o9vdrg@group.calendar.google.com","Timezone":"Korea Standard Time"}
+		{"Id":"[your-calendar-id-here@group.calendar.google.com]","Timezone":"Korea Standard Time"},
+        {"Id":"[another-calendar-id-here@group.calendar.google.com]","Timezone":"Korea Standard Time"}
       ],
       "PastDays": 7,
       "FutureDays": 30
     },
     "Vision": {
-      "Endpoint": "https://aijournalist.cognitiveservices.azure.com/",
-      "ApiKey": "e3fcfded5f5c42c8a321ffb1e0286682"
+      "Endpoint": "https://[your-subdomain-for-endpoint-here].cognitiveservices.azure.com/",
+      "ApiKey": "[your-api-key-here]"
     }
   },
   "ArticleTemplateFilename": "article.html"
