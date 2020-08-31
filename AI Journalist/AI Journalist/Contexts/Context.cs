@@ -27,6 +27,7 @@ namespace AI_Journalist.Contexts
             public string PersonName;
             public string Emoticon;
             public Pronoun Pronoun;
+            public int[] TagIds = Array.Empty<int>();
         }
         public Account Author;
         public List<Account> TaggedInCaption = new List<Account>();

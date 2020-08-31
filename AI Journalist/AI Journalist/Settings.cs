@@ -29,6 +29,7 @@ namespace AI_Journalist
                 public string Name;
                 public string Emoticon;
                 public string Pronoun;
+                public int[] TagIds;
             }
             public PeopleNode[] People;
 
@@ -44,7 +45,7 @@ namespace AI_Journalist
                 public class LinkedNode
                 {
                     public string Id;
-                    public string Timezone; // because pulling from Google requires app review
+                    public string Timezone; // user-specified, because pulling from Google requires app review
                 }
                 public string ApplicationName;
                 public string ApiKey;
@@ -64,7 +65,27 @@ namespace AI_Journalist
         public ContextsNode Contexts;
 
         // Btw, we use Fluid, which is similar to Liquid template language
-        public string ArticleTemplateFilename;
+        public class ArticleNode
+        {
+            public class TemplateNode
+            {
+                public string Title;
+                public string BodyFilename;
+                public int[] CategoryIds;
+                public int[] TagIds;
+            }
+            public TemplateNode Template;
+
+            public class APINode
+            {
+                public string Endpoint;
+                public string Username;
+                public string Password;
+            }
+            public APINode API;
+
+        }
+        public ArticleNode Article;
 
         // Leaving the part where the compiler is wrong,
         // so we restore the warning checking.

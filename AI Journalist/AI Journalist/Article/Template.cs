@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 
 namespace AI_Journalist.Article
 {
@@ -12,11 +13,9 @@ namespace AI_Journalist.Article
     {
         FluidTemplate Fluid;
 
-        public Template(string filename)
+        public Template(string templateContents)
         {
-            var contents = File.ReadAllText(filename);
-            Fluid = FluidTemplate.Parse(contents);
-
+            Fluid = FluidTemplate.Parse(templateContents);
             TemplateContext.GlobalFilters.AddFilter("tokst", ToKst);
         }
 
@@ -32,7 +31,7 @@ namespace AI_Journalist.Article
             parserContext.MemberAccessStrategy.Register<Sources.Update.Media>();
             parserContext.SetValue("Context", context);
 
-            return Fluid.Render(parserContext, HtmlEncoder.Default);
+            return PostProcess(Fluid.Render(parserContext, HtmlEncoder.Default));
         }
 
         static FluidValue ToKst(FluidValue input, FilterArguments arguments, TemplateContext context)
@@ -43,5 +42,24 @@ namespace AI_Journalist.Article
             return new ObjectValue(TimeZoneInfo.ConvertTimeFromUtc(dateValue, timezone));
         }
 
+        string PostProcess(string rendered)
+        {
+            // Remove comments that are not WordPress comments
+            rendered = new Regex(@"<!--(?![ \/]*wp).*?-->").Replace(rendered, "");
+
+            // Replace all newlines and tabs with spaces
+            rendered = new Regex(@"[\r\n\t]").Replace(rendered, " ");
+
+            // Replace double spaces with a single space
+            rendered = new Regex(@"  +").Replace(rendered, " ");
+
+            // Add newlines around each (wordpress) comment
+            rendered = new Regex(@"(<!--.*?-->)").Replace(rendered, "\n$1\n");
+
+            // Remove trailing spaces on lines and after tag openings
+            rendered = new Regex(@"(^|<[^\/][^>]*?>) (?!$)").Replace(rendered, "$1");
+
+            return rendered;
+        }
     }
 }

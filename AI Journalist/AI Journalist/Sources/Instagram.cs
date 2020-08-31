@@ -59,6 +59,7 @@ namespace AI_Journalist.Sources
         Update.Media ParseMedia(dynamic mediaNode)
         {
             var media = new Update.Media {
+                Id = mediaNode.id,
                 SourceUrl = (bool)mediaNode.is_video ? mediaNode.video_url : mediaNode.display_url,
                 DisplayUrl = mediaNode.display_url,
                 IsVideo = mediaNode.is_video,

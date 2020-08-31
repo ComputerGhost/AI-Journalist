@@ -37,6 +37,7 @@ namespace AI_Journalist.Contexts
                         PersonName = person.Name,
                         Emoticon = person.Emoticon,
                         Pronoun = CreatePronoun(person.Pronoun ?? "they(s)"),
+                        TagIds = person.TagIds ?? Array.Empty<int>(),
                     };
                 }
             }

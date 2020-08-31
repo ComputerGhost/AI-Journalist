@@ -32,29 +32,33 @@ namespace AI_Journalist.Contexts
             request.SingleEvents = true;
             request.TimeMin = calendarNow.AddDays(-1 * Settings.PastDays);
             request.TimeMax = calendarNow.AddDays(Settings.FutureDays);
-            var events = request.Execute();
+            var googleEvents = request.Execute();
 
-            // Find which ones apply to the author
-            foreach (var item in events.Items) {
-                if (item.Summary.Contains(context.Author.Emoticon)) {
+            // Find the ones that apply to the author
+            foreach (var googleEvent in googleEvents.Items) {
+                if (googleEvent.Summary.Contains(context.Author.Emoticon)) {
 
-                    var @event = new Context.Event() {
-                        StartTime = item.Start.DateTime ?? DateTime.Parse(item.Start.Date),
-                        EndTime = item.End.DateTime ?? DateTime.Parse(item.End.Date),
-                        IsAllDay = item.Start.DateTime == null,
-                        Title = GetSanitizedTitle(item.Summary),
-                        Description = GetSanitizedDescription(item.Description),
+                    var ourEvent = new Context.Event() {
+                        StartTime = googleEvent.Start.DateTime ?? DateTime.Parse(googleEvent.Start.Date),
+                        EndTime = googleEvent.End.DateTime ?? DateTime.Parse(googleEvent.End.Date),
+                        IsAllDay = googleEvent.Start.DateTime == null,
+                        Title = GetSanitizedTitle(googleEvent.Summary),
+                        Description = GetSanitizedDescription(googleEvent.Description),
                     };
 
-                    // Convert from calendar time
-                    @event.StartTime = TimeZoneInfo.ConvertTimeToUtc(@event.StartTime, timezone);
-                    @event.EndTime = TimeZoneInfo.ConvertTimeFromUtc(@event.EndTime, timezone);
+                    // Convert from calendar time to UTC
+                    ourEvent.StartTime = TimeZoneInfo.ConvertTimeToUtc(
+                        DateTime.SpecifyKind(ourEvent.StartTime, DateTimeKind.Unspecified), 
+                        timezone);
+                    ourEvent.EndTime = TimeZoneInfo.ConvertTimeToUtc(
+                        DateTime.SpecifyKind(ourEvent.EndTime, DateTimeKind.Unspecified), 
+                        timezone);
 
                     // Then add it to past or future list
-                    if (@event.StartTime <= DateTime.UtcNow)
-                        context.PastEvents.Add(@event);
+                    if (ourEvent.StartTime <= DateTime.UtcNow)
+                        context.PastEvents.Add(ourEvent);
                     else
-                        context.FutureEvents.Add(@event);
+                        context.FutureEvents.Add(ourEvent);
                     break;
                 }
             }

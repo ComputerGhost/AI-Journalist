@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -43,6 +44,15 @@ namespace AI_Journalist
         {
             var response = await Client.GetAsync(url);
             return await response.Content.ReadAsByteArrayAsync();
+        }
+
+        public Stream GetStream(string url)
+        {
+            return GetStreamAsync(url).Result;
+        }
+        public async Task<Stream> GetStreamAsync(string url)
+        {
+            return await Client.GetStreamAsync(url);
         }
     }
 }

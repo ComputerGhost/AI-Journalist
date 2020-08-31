@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace AI_Journalist.Sources
 {
@@ -8,6 +9,7 @@ namespace AI_Journalist.Sources
     {
         public class Media
         {
+            public string Id;
             public string SourceUrl;
             public string DisplayUrl;
             public bool IsVideo;
