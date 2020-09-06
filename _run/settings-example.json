@@ -102,5 +102,21 @@
       "ApiKey": "[your-api-key-here]"
     }
   },
-  "ArticleTemplateFilename": "article.html"
+  "Article": {
+    "Template": {
+      "Title": "{{ Context.When | tokst | date: \"%Y%m%d\" }} {{ Context.Author.PersonName }} {{ Context.Author.Description }}",
+      "BodyFilename": "article.html",
+      "CategoryIds": [
+        122
+      ],
+      "TagIds": [
+        38
+      ]
+    },
+    "API": {
+      "Endpoint": "https://[your-website-dot-com]/wp-json/",
+      "Username": "[username]",
+      "Password": "[password]"
+    }
+  }
 }
