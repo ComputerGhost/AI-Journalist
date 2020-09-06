@@ -26,12 +26,13 @@ namespace AI_Journalist.Contexts
                 var features = new VisualFeatureTypes?[] { VisualFeatureTypes.Description };
                 var result = Service.AnalyzeImageAsync(media.DisplayUrl, features).Result;
 
-                var description = new Context.MediaDescription();
+                var description = new Context.MediaDescription {
+                    AssociatedMedia = media
+                };
                 if (result.Description.Captions.Count > 0) {
                     var topCaption = result.Description.Captions[0];
                     description.Description = topCaption.Text;
                     description.Confidence = topCaption.Confidence;
-                    description.AssociatedMedia = media;
                 }
                 context.MediaDescriptions.Add(description);
             }
