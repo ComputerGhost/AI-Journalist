@@ -91,18 +91,22 @@
 </ul></figure>
 <!-- /wp:gallery -->
 
-<!-- wp:paragraph -->
-<p>The caption is:</p>
-<!-- /wp:paragraph -->
-	
-<!-- wp:quote -->
-<blockquote class="wp-block-quote"><p>{{ Context.Source.Caption }}</p></blockquote>
-<!-- /wp:quote -->
+{% if Context.Source.Caption | size > 0 %}
 
-{% if Context.IsCaptionKorean %}
+	<!-- wp:paragraph -->
+	<p>The caption is:</p>
+	<!-- /wp:paragraph -->
+		
 	<!-- wp:quote -->
-	<blockquote class="wp-block-quote"><p>(translated) {{ Context.TranslatedCaption }}</p></blockquote>
+	<blockquote class="wp-block-quote"><p>{{ Context.Source.Caption }}</p></blockquote>
 	<!-- /wp:quote -->
+
+	{% if Context.IsCaptionKorean %}
+		<!-- wp:quote -->
+		<blockquote class="wp-block-quote"><p>(translated) {{ Context.TranslatedCaption }}</p></blockquote>
+		<!-- /wp:quote -->
+	{% endif %}
+
 {% endif %}
 
 <!-- wp:paragraph -->
