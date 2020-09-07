@@ -55,11 +55,10 @@ namespace AI_Journalist.Contexts
                         timezone);
 
                     // Then add it to past or future list
-                    if (ourEvent.StartTime <= DateTime.UtcNow)
+                    if (ourEvent.StartTime <= calendarNow)
                         context.PastEvents.Add(ourEvent);
                     else
                         context.FutureEvents.Add(ourEvent);
-                    break;
                 }
             }
 
