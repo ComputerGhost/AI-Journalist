@@ -3,11 +3,13 @@
 	On <time datetime="{{ Context.When | date: '%F %k:%M:%SZ' }}">{{ Context.When | tokst | date: "%B %e" }}</time>, 
 	{{ Context.Author.PersonName }} posted
 	
-	{% assign image_count = Context.Source.Medias | where: "IsVideo", "false" | size %}
-	{% assign video_count = Context.Source.Medias | where: "IsVideo", "true" | size %}
-	{% if image_count > 0 %}{{ image_count }} images {% endif %}
+	{% assign image_count = Context.Source.Medias | where: "IsVideo", false | size %}
+	{% assign video_count = Context.Source.Medias | where: "IsVideo", true | size %}
+	{% if image_count == 1 %}an image {% endif %}
+	{% if image_count > 1 %}{{ image_count }} images {% endif %}
 	{% if image_count > 0 and video_count > 0 %} and {% endif %}
-	{% if video_count > 0 %}{{ video_count }} videos {% endif %}
+	{% if video_count == 1 %}a video {% endif %}
+	{% if video_count > 1 %}{{ video_count }} videos {% endif %}
 	
 	on {{ Context.Author.Pronoun.DependentPossessive }} {{ Context.Author.Description }}.
 	
