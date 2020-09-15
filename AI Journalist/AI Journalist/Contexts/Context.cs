@@ -28,10 +28,15 @@ namespace AI_Journalist.Contexts
             public string Emoticon;
             public Pronoun Pronoun;
             public int[] TagIds = Array.Empty<int>();
+
+            public override int GetHashCode()
+            {
+                return Username.GetHashCode();
+            }
         }
         public Account Author;
-        public List<Account> TaggedInCaption = new List<Account>();
-        public List<Account> TaggedInMedia = new List<Account>();
+        public HashSet<Account> TaggedInCaption = new HashSet<Account>();
+        public HashSet<Account> TaggedInMedia = new HashSet<Account>();
 
         // From: Calendar
         public struct Event
