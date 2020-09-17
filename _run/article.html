@@ -119,8 +119,8 @@
 		Recently, there was {{ Context.PastEvents[0].Title }} on {{ Context.PastEvents[0].StartTime | tokst | date: "%B %e" }}.
 	{% endif %}
 	
-	{% if Context.NextEvents | size > 0 %}
-		Also look forward to {{ Context.NextEvents[0].Title }} on {{ Context.NextEvents[0].StartTime | tokst | date: "%B %e" }}.
+	{% if Context.FutureEvents | size > 0 %}
+		Also look forward to {{ Context.FutureEvents[0].Title }} on {{ Context.FutureEvents[0].StartTime | tokst | date: "%B %e" }}.  {{ Context.FutureEvents[0].Description }}
 	{% endif %}
 	
 	See <a href="https://leggonews.com/schedule/">our schedule</a> for all official activity.
