@@ -28,7 +28,7 @@ namespace AI_Journalist
             foreach (var update in updates) {
                 var context = DecipherUpdate(update);
                 var post = BuildArticle(context);
-                //UploadArticle(post, context);
+                UploadArticle(post, context);
             }
 
             if (updates.Count > 0) {
