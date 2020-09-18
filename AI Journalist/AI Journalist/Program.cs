@@ -28,7 +28,7 @@ namespace AI_Journalist
             foreach (var update in updates) {
                 var context = DecipherUpdate(update);
                 var post = BuildArticle(context);
-                UploadArticle(post, context);
+                //UploadArticle(post, context);
             }
 
             if (updates.Count > 0) {
@@ -77,7 +77,7 @@ namespace AI_Journalist
 
             // Default tags and categories
             post.CategoryIds.AddRange(Settings.Article.Template.CategoryIds);
-            post.TagIds.AddRange(Settings.Article.Template.CategoryIds);
+            post.TagIds.AddRange(Settings.Article.Template.TagIds);
 
             // We want to have a tag for anyone in the media
             post.TagIds.AddRange(context.Author.TagIds);
