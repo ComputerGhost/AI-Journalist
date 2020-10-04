@@ -17,6 +17,7 @@ namespace AI_Journalist.Article
         {
             Fluid = FluidTemplate.Parse(templateContents);
             TemplateContext.GlobalFilters.AddFilter("tokst", ToKst);
+            TemplateContext.GlobalFilters.AddFilter("pre", ToPre);
         }
 
         public string Render(Contexts.Context context)
@@ -40,6 +41,14 @@ namespace AI_Journalist.Article
 
             var timezone = TimeZoneInfo.FindSystemTimeZoneById("Korea Standard Time");
             return new ObjectValue(TimeZoneInfo.ConvertTimeFromUtc(dateValue, timezone));
+        }
+
+        static FluidValue ToPre(FluidValue input, FilterArguments arguments, TemplateContext context)
+        {
+            var stringValue = input.ToStringValue();
+            stringValue = stringValue.Replace("\n", "<br>");
+            stringValue = stringValue.Replace("  ", "&nbsp; ");
+            return new StringValue(stringValue);
         }
 
         string PostProcess(string rendered)

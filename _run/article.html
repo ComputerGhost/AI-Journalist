@@ -100,12 +100,16 @@
 	<!-- /wp:paragraph -->
 		
 	<!-- wp:quote -->
-	<blockquote class="wp-block-quote"><p>{{ Context.Source.Caption }}</p></blockquote>
+	<blockquote class="wp-block-quote"><p>{{ Context.Source.Caption | pre }}</p></blockquote>
 	<!-- /wp:quote -->
 
 	{% if Context.IsCaptionKorean %}
+		<!-- wp:paragraph -->
+		<p>Translated:</p>
+		<!-- /wp:paragraph -->
+	
 		<!-- wp:quote -->
-		<blockquote class="wp-block-quote"><p>(translated) {{ Context.TranslatedCaption }}</p></blockquote>
+		<blockquote class="wp-block-quote"><p>{{ Context.TranslatedCaption | pre }}</p></blockquote>
 		<!-- /wp:quote -->
 	{% endif %}
 
