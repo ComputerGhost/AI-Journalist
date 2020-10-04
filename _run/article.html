@@ -88,7 +88,7 @@
 <!-- wp:gallery {"ids":[#IMAGE_IDS#]} -->
 <figure class="wp-block-gallery columns-3 is-cropped"><ul class="blocks-gallery-grid">
 	{% for media in Context.Source.Medias %}
-		<li class="blocks-gallery-item"><figure><img src="{{ media.DisplayUrl | raw }}" alt="" data-id="{{ media.Id }}" data-link="https://leggonews.com?attachment_id={{ media.Id }}" class="wp-image-{{ media.Id }} {% if media.IsVideo %}video{% endif %}"/></figure></li>
+		<li class="blocks-gallery-item"><figure><img src="{{ media.DisplayUrl | raw }}" alt="" data-id="{{ media.Id }}" data-link="https://leggonews.com?attachment_id={{ media.Id }}" data-full-url="{{ media.DisplayURL }}" class="wp-image-{{ media.Id }} {% if media.IsVideo %}video{% endif %}"/></figure></li>
 	{% endfor %}
 </ul></figure>
 <!-- /wp:gallery -->
