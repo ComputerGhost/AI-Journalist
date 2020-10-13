@@ -53,12 +53,6 @@
 		are tagged in the caption.
 	{% endif %}
 	
-	Visit the post &lt;<a href="{{ Context.Source.SourceUrl | raw }}">here</a>&gt;.
-</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>
 	<!-- The pictures are of a dog, a closeup of a dog, and surfing. -->
 	{% assign pictures = Context.PictureDescriptions %}
 	{% if pictures | size == 1 %}
@@ -82,6 +76,8 @@
 		{% assign i_end = videos | size - 2 %}{% for i in (0..i_end) %}{{ videos[i].Description }}, {% endfor %}
 		and {{ videos[i_end + 1].Description }}.
 	{% endif %}
+	
+	Visit the post &lt;<a href="{{ Context.Source.SourceUrl | raw }}">here</a>&gt;.
 </p>
 <!-- /wp:paragraph -->
 
