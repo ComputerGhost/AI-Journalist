@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -22,6 +23,12 @@ namespace AI_Journalist.Article
         {
             public int Id;
             public string Url;
+        }
+
+        public class Meta
+        {
+            [JsonProperty("featured-image-display")]
+            public bool FeaturedImageDisplay;
         }
 
 
@@ -53,7 +60,7 @@ namespace AI_Journalist.Article
                     Tags = post.TagIds.ToArray(),
                     Categories = post.CategoryIds.ToArray(),
                     FeaturedMedia = post.FeaturedMediaId,
-                    
+                    Meta = new Meta { FeaturedImageDisplay = false }
                 });
             }
             else
