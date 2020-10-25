@@ -15,7 +15,7 @@ namespace AI_Journalist.Article
 
         public Template(string templateContents)
         {
-            Fluid = FluidTemplate.Parse(templateContents);
+            Fluid = FluidTemplate.Parse(Preprocess(templateContents));
             TemplateContext.GlobalFilters.AddFilter("tokst", ToKst);
             TemplateContext.GlobalFilters.AddFilter("pre", ToPre);
         }
@@ -32,7 +32,7 @@ namespace AI_Journalist.Article
             parserContext.MemberAccessStrategy.Register<Sources.Update.Media>();
             parserContext.SetValue("Context", context);
 
-            return PostProcess(Fluid.Render(parserContext, HtmlEncoder.Default));
+            return Postprocess(Fluid.Render(parserContext, HtmlEncoder.Default));
         }
 
         static FluidValue ToKst(FluidValue input, FilterArguments arguments, TemplateContext context)
@@ -46,28 +46,29 @@ namespace AI_Journalist.Article
         static FluidValue ToPre(FluidValue input, FilterArguments arguments, TemplateContext context)
         {
             var stringValue = input.ToStringValue();
-            stringValue = stringValue.Replace("\n", "<br>");
-            stringValue = stringValue.Replace("  ", "&nbsp; ");
+            //stringValue = stringValue.Replace("\n", "<br>");
+            stringValue = stringValue.Replace("  ", "\xa0 ");
             return new StringValue(stringValue);
         }
 
-        string PostProcess(string rendered)
+        string Preprocess(string template)
         {
-            // Remove comments that are not WordPress comments
-            rendered = new Regex(@"<!--(?![ \/]*wp).*?-->").Replace(rendered, "");
+            // Remove all comments
+            template = new Regex(@"<!--.*?-->").Replace(template, "");
 
-            // Replace all newlines and tabs with spaces
-            rendered = new Regex(@"[\r\n\t]").Replace(rendered, " ");
+            // Remove all extra whitespace
+            template = new Regex(@"[\r\n\t]").Replace(template, " ");
+            template = new Regex(@"  +").Replace(template, " ");
 
-            // Replace double spaces with a single space
-            rendered = new Regex(@"  +").Replace(rendered, " ");
+            // Replace paragraph tags with double spaces
+            template = new Regex(@"<p>(.*?)<\/p>").Replace(template, "\n\n$1\n\n");
+            template = template.Replace("\n\n\n\n", "\n\n");
 
-            // Add newlines around each (wordpress) comment
-            rendered = new Regex(@"(<!--.*?-->)").Replace(rendered, "\n$1\n");
+            return template.TrimStart();
+        }
 
-            // Remove trailing spaces on lines and after tag openings
-            rendered = new Regex(@"(^|<[^\/][^>]*?>) (?!$)").Replace(rendered, "$1");
-
+        string Postprocess(string rendered)
+        {
             return rendered;
         }
     }
