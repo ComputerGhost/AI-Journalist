@@ -69,7 +69,7 @@ namespace AI_Journalist.Contexts
 
         string GetSanitizedTitle(string title)
         {
-            return Regex.Replace(title, @"^[^\w]*(.*?)[^\w]*$", "$1");
+            return Regex.Replace(title, @"^[^\w\(\)]*(.*?)[^\w\(\)]*$", "$1");
         }
 
         string GetSanitizedDescription(string description)
